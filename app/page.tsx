@@ -104,7 +104,7 @@ const PROJECTS = [
     desc: "This portfolio — a modern, animated single-page application built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     points: [],
-    github: "",
+    github: "https://github.com/rithikamandiv-ux/portfolio",
   },
 ] as const;
 
@@ -284,7 +284,7 @@ export default function Home() {
 
               <p className="mt-6 max-w-xl text-lg leading-8 text-[#F2E9E4]/80">
                 I design and build software across web, desktop, and data
-                systems — from full-stack apps to Java desktop tools and Python
+                systems from full-stack apps to Java desktop tools and Python
                 ML pipelines.
               </p>
 
