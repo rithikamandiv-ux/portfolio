@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #0b0b12;
+  --color-foreground: #f2e9e4;
+  --font-sans: var(--font-inter);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+/* ── Star background animation ── */
+
+.stars,
+.stars2 {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.8) 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.35) 1px, transparent 1.5px);
+  background-size: 90px 90px, 150px 150px;
+  background-position: 0 0, 40px 60px;
+  opacity: 0.45;
+  animation: starDrift 90s linear infinite;
+}
+
+.stars2 {
+  opacity: 0.25;
+  filter: blur(1px);
+  background-size: 130px 130px, 220px 220px;
+  animation-duration: 140s;
+}
+
+@keyframes starDrift {
+  from {
+    background-position: 0 0, 40px 60px;
+  }
+
+  to {
+    background-position: 0 900px, 40px 960px;
+  }
+}
