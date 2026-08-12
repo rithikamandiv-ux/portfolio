@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 import { useState, useEffect } from "react";
+import Shuffle from '@/components/ui/Shuffle'
+import ParticleText from "@/components/ui/ParticleText";
 
 /* ── Animation variant ── */
 
@@ -50,6 +52,45 @@ const SKILLS = [
 
 const PROJECTS = [
   {
+    title: "Cyber Log Analyzer",
+    year: "2026",
+    desc: "A production-style cybersecurity log analysis platform with a React frontend, Node.js backend, and PostgreSQL database for uploading, parsing, and investigating security logs.",
+    points: [
+      "Implemented JWT-based authentication for secure user sessions.",
+      "Built a file upload pipeline that parses raw log files and stores structured entries in PostgreSQL.",
+      "Designed a dashboard surfacing security alerts, threat summaries, and log statistics in real time.",
+      "Exposed a RESTful API for log ingestion, querying, and alert management.",
+    ],
+    tags: ["React", "Node.js", "Express", "PostgreSQL", "JWT", "REST API"],
+    github: "https://github.com/rithikamandiv-ux/cyber-log-analyzer",
+  },
+  {
+    title: "BudgetWise",
+    year: "2026",
+    desc: "A full-stack personal finance application with user authentication, an analytics dashboard, and complete management of transactions, categories, and budgets.",
+    points: [
+      "Built secure authentication with protected routes and session handling.",
+      "Developed a dashboard with live summaries of income, spending, and budget progress.",
+      "Implemented transaction and category management with RESTful CRUD endpoints via Express.",
+      "Delivered responsive analytics views built with React and backed by PostgreSQL.",
+    ],
+    tags: ["React", "Node.js", "Express", "PostgreSQL"],
+    github: "https://github.com/rithikamandiv-ux/budgetwise",
+  },
+  {
+    title: "F1 Winner Prediction System",
+    year: "2026",
+    desc: "A Python machine-learning pipeline that predicts Formula 1 race winners using historical data collected via FastF1 across multiple seasons.",
+    points: [
+      "Automated multi-season dataset generation using the FastF1 API for historical race data collection.",
+      "Engineered features from lap times, driver standings, and circuit characteristics using Pandas.",
+      "Trained and evaluated classification models with Scikit-learn, optimising for prediction accuracy.",
+      "Built an end-to-end prediction pipeline covering data ingestion, preprocessing, and inference.",
+    ],
+    tags: ["Python", "FastF1", "Pandas", "Scikit-learn", "Machine Learning"],
+    github: "https://github.com/rithikamandiv-ux/F1-winner-prediction",
+  },
+  {
     title: "Clinic Insurance System",
     year: "2026",
     desc: "A desktop application for managing clinic operations — patients, doctors, appointments, medical records, insurance policies, and claims — built with Java and JavaFX.",
@@ -87,27 +128,29 @@ const PROJECTS = [
     github: "https://github.com/rithikamandiv-ux/F1-winner-prediction",
   },
   {
-  title: "BudgetWise",
-  year: "2026",
-  desc: "A full-stack personal finance management application with AI-powered budget forecasting, built using React, Node.js, PostgreSQL, and a Python FastAPI forecasting service.",
-  points: [
-    "Built a React and TypeScript frontend for managing income, expenses, budgets, and financial categories.",
-    "Developed a Node.js and Express API layer for handling finance-related CRUD operations.",
-    "Used PostgreSQL for structured financial data storage.",
-    "Integrated a Python FastAPI microservice for budget forecasting and overspending prediction.",
-  ],
-  tags: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Python", "FastAPI"],
-  github: "https://github.com/rithikamandiv-ux/budgetwise",
+    title: "BudgetWise",
+    year: "2026",
+    desc: "A full-stack personal finance management application with AI-powered budget forecasting, built using React, Node.js, PostgreSQL, and a Python FastAPI forecasting service.",
+    points: [
+      "Built a React and TypeScript frontend for managing income, expenses, budgets, and financial categories.",
+      "Developed a Node.js and Express API layer for handling finance-related CRUD operations.",
+      "Used PostgreSQL for structured financial data storage.",
+      "Integrated a Python FastAPI microservice for budget forecasting and overspending prediction.",
+    ],
+    tags: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Python", "FastAPI"],
+    github: "https://github.com/rithikamandiv-ux/budgetwise",
   },
   {
     title: "Portfolio Website",
     year: "2026",
-    desc: "This portfolio — a modern, animated single-page application built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    desc: "This portfolio — a modern, animated single-page application featuring a particle-text name reveal, shuffle subtitle animation, responsive navigation, and project showcase.",
     points: [
-      "Designed a responsive single-page portfolio with smooth section navigation.",
-      "Implemented scroll-based animations and active navbar highlighting.",
-      "Added project cards with GitHub links and recruiter-focused descriptions."],
+      "Built with Next.js and TypeScript for a performant, type-safe application structure.",
+      "Implemented an animated hero with particle-text name reveal and shuffle subtitle.",
+      "Used Framer Motion for scroll-triggered reveal animations across sections.",
+      "Deployed to Vercel with responsive layouts optimised for desktop, tablet, and mobile.",
+    ],
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
     github: "https://github.com/rithikamandiv-ux/portfolio",
   },
 ] as const;
@@ -154,9 +197,6 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  const fullText = "Software Engineering Undergraduate";
-  const [typedText, setTypedText] = useState("");
-
   /* Track which section is in view */
   useEffect(() => {
     const ids = ["home", "about", "skills", "projects", "education", "achievements", "contact"];
@@ -177,17 +217,6 @@ export default function Home() {
 
     return () => observer.disconnect();
   }, []);
-
-  /* Typing animation */
-  useEffect(() => {
-    let index = 0;
-    const interval = setInterval(() => {
-      setTypedText(fullText.slice(0, index + 1));
-      index++;
-      if (index === fullText.length) clearInterval(interval);
-    }, 80);
-    return () => clearInterval(interval);
-  }, [fullText]);
 
   const navLinkClass = (section: string) =>
     `text-sm transition ${activeSection === section
@@ -276,15 +305,66 @@ export default function Home() {
                 ● Available for Opportunities
               </span>
 
-              <h1 className="mt-6 text-5xl font-bold leading-tight md:text-7xl">
-                Rithika <br />
-                <span className="text-[#C9ADA7]">Mandiv</span>
-              </h1>
+              {/* ParticleText name — two lines, gather once on mount, white-only */}
+              <div className="mt-6" aria-label="Rithika Mandiv">
+                <ParticleText
+                  text="Rithika"
+                  color="#ffffff"
+                  highlightColor="#ffffff"
+                  trigger="mount"
+                  fontSize="clamp(2.8rem, 8vw, 5.5rem)"
+                  fontWeight={700}
+                  fontFamily="inherit"
+                  density={3}
+                  particleSize={2}
+                  scatter={160}
+                  gatherDuration={1400}
+                  stagger={380}
+                  idleDrift={0}
+                  pointerRepel={0}
+                  repelRadius={0}
+                  glow={false}
+                  className="min-h-[3.5rem] md:min-h-[4.5rem]"
+                />
+                <ParticleText
+                  text="Mandiv"
+                  color="#ffffff"
+                  highlightColor="#ffffff"
+                  trigger="mount"
+                  fontSize="clamp(2.8rem, 8vw, 5.5rem)"
+                  fontWeight={700}
+                  fontFamily="inherit"
+                  density={3}
+                  particleSize={2}
+                  scatter={160}
+                  gatherDuration={1400}
+                  stagger={380}
+                  idleDrift={0}
+                  pointerRepel={0}
+                  repelRadius={0}
+                  glow={false}
+                  className="min-h-[3.5rem] md:min-h-[4.5rem]"
+                />
+              </div>
 
-              <p className="mt-4 text-xl text-white/70">
-                {typedText}
-                <span className="ml-1 animate-pulse text-[#C9ADA7]">|</span>
-              </p>
+              {/* Shuffle subtitle — plays once on scroll-enter, no hover replay, no loop */}
+              <div className="mt-4">
+                <Shuffle
+                  text="Software Engineering Undergraduate"
+                  tag="p"
+                  className="text-xl font-semibold md:text-2xl"
+                  style={{ color: "#ffffff", textAlign: "left", fontFamily: "inherit" }}
+                  shuffleDirection="up"
+                  duration={0.4}
+                  stagger={0.03}
+                  animationMode="evenodd"
+                  loop={false}
+                  triggerOnce={true}
+                  triggerOnHover={false}
+                  threshold={0.1}
+                  rootMargin="0px"
+                />
+              </div>
 
               <p className="mt-6 max-w-xl text-lg leading-8 text-[#F2E9E4]/80">
                 I design and build software across web, desktop, and data
