@@ -1,4 +1,4 @@
-```md
+
 # Rithika Mandiv — Portfolio
 
 A modern personal portfolio website showcasing my software engineering work across full-stack web development, Java desktop applications, Python-based systems, machine learning, and cybersecurity.
