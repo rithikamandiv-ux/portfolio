@@ -19,6 +19,7 @@ export interface ParticleTextProps {
     fontSize?: number | string;
     fontWeight?: number | string;
     fontFamily?: string;
+    textAlign?: 'left' | 'center' | 'right';
     glow?: boolean;
     className?: string;
     style?: CSSProperties;
@@ -109,6 +110,7 @@ const ParticleText = ({
     fontSize = 'clamp(3rem, 12vw, 8rem)',
     fontWeight = 800,
     fontFamily = 'inherit',
+    textAlign = 'center',
     glow = true,
     className = '',
     style
@@ -312,12 +314,19 @@ const ParticleText = ({
             const targets: Target[] = [];
             const step = Math.max(2, Math.floor(density));
 
+            let offsetX = width / 2 - offscreen.width / 2;
+            if (textAlign === 'left') {
+                offsetX = 0;
+            } else if (textAlign === 'right') {
+                offsetX = width - offscreen.width;
+            }
+
             for (let y = 0; y < offscreen.height; y += step) {
                 for (let x = 0; x < offscreen.width; x += step) {
                     const alpha = imageData.data[(y * offscreen.width + x) * 4 + 3];
                     if (alpha > 40) {
                         targets.push({
-                            x: width / 2 - offscreen.width / 2 + x,
+                            x: offsetX + x,
                             y: height / 2 - offscreen.height / 2 + y,
                             alpha: alpha / 255
                         });
@@ -446,13 +455,14 @@ const ParticleText = ({
         fontSize,
         fontWeight,
         fontFamily,
+        textAlign,
         glow
     ]);
 
     return (
         <div
             ref={containerRef}
-            className={`relative block h-full min-h-[240px] w-full overflow-hidden touch-none ${className}`}
+            className={`relative block w-full overflow-hidden touch-none ${className}`}
             style={style}
             aria-label={text}
         >

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import type { ReactNode } from "react";
 import { useState, useEffect } from "react";
 import Shuffle from '@/components/ui/Shuffle'
@@ -47,7 +47,8 @@ const SKILLS = [
   { title: "Backend & Frameworks", items: ["Node.js", "Express", "PHP"] },
   { title: "Programming Languages", items: ["Java", "Python", "TypeScript"] },
   { title: "Databases", items: ["PostgreSQL", "MySQL", "SQLite"] },
-  { title: "Tools", items: ["Git", "GitHub", "VS Code", "IntelliJ IDEA", "Figma", "Maven"] },
+  { title: "Tools", items: ["Git", "GitHub", "VS Code", "IntelliJ IDEA", "Figma", "Maven", "Vercel"] },
+  { title: "Data & Machine Learning", items: ["Pandas", "NumPy", "Scikit-learn", "FastF1"] },
 ] as const;
 
 const PROJECTS = [
@@ -67,14 +68,14 @@ const PROJECTS = [
   {
     title: "BudgetWise",
     year: "2026",
-    desc: "A full-stack personal finance application with user authentication, an analytics dashboard, and complete management of transactions, categories, and budgets.",
+    desc: "A full-stack personal finance management application with AI-powered budget forecasting, built using React, Node.js, PostgreSQL, and a Python FastAPI forecasting service.",
     points: [
-      "Built secure authentication with protected routes and session handling.",
-      "Developed a dashboard with live summaries of income, spending, and budget progress.",
-      "Implemented transaction and category management with RESTful CRUD endpoints via Express.",
-      "Delivered responsive analytics views built with React and backed by PostgreSQL.",
+      "Built a React and TypeScript frontend for managing income, expenses, budgets, and financial categories.",
+      "Developed a Node.js and Express API layer for handling finance-related CRUD operations.",
+      "Used PostgreSQL for structured financial data storage.",
+      "Integrated a Python FastAPI microservice for budget forecasting and overspending prediction.",
     ],
-    tags: ["React", "Node.js", "Express", "PostgreSQL"],
+    tags: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Python", "FastAPI"],
     github: "https://github.com/rithikamandiv-ux/budgetwise",
   },
   {
@@ -114,31 +115,6 @@ const PROJECTS = [
     ],
     tags: ["Node.js", "Express", "SQLite", "EJS", "jQuery"],
     github: "https://github.com/rithikamandiv-ux/expenseRecorder",
-  },
-  {
-    title: "F1 Winner Prediction System",
-    year: "2026",
-    desc: "A Python machine-learning project that predicts Formula 1 race winners by analysing historical race data and driver performance trends.",
-    points: [
-      "Cleaned and preprocessed large datasets using Pandas and NumPy.",
-      "Trained and evaluated classification models with Scikit-learn.",
-      "Analysed feature importance to identify key predictors of race outcomes.",
-    ],
-    tags: ["Python", "Pandas", "Scikit-learn",],
-    github: "https://github.com/rithikamandiv-ux/F1-winner-prediction",
-  },
-  {
-    title: "BudgetWise",
-    year: "2026",
-    desc: "A full-stack personal finance management application with AI-powered budget forecasting, built using React, Node.js, PostgreSQL, and a Python FastAPI forecasting service.",
-    points: [
-      "Built a React and TypeScript frontend for managing income, expenses, budgets, and financial categories.",
-      "Developed a Node.js and Express API layer for handling finance-related CRUD operations.",
-      "Used PostgreSQL for structured financial data storage.",
-      "Integrated a Python FastAPI microservice for budget forecasting and overspending prediction.",
-    ],
-    tags: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Python", "FastAPI"],
-    github: "https://github.com/rithikamandiv-ux/budgetwise",
   },
   {
     title: "Portfolio Website",
@@ -263,37 +239,62 @@ export default function Home() {
           {/* Mobile toggle */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="rounded-xl border border-white/10 px-3 py-2 text-white lg:hidden"
+            className="flex h-10 w-11 items-center justify-center rounded-xl border border-white/10 text-white lg:hidden"
             aria-label="Toggle navigation menu"
           >
-            {isMenuOpen ? "✕" : "☰"}
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={isMenuOpen ? "close" : "open"}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.15 }}
+                className="inline-block"
+              >
+                {isMenuOpen ? "✕" : "☰"}
+              </motion.span>
+            </AnimatePresence>
           </button>
         </div>
 
         {/* Mobile menu */}
-        {isMenuOpen && (
-          <div className="border-t border-white/10 bg-[#0b0b12]/95 px-6 py-5 backdrop-blur-md lg:hidden">
-            <div className="flex flex-col gap-4">
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="border-t border-white/10 bg-[#0b0b12]/95 px-6 py-5 backdrop-blur-md lg:hidden"
+            >
+              <div className="flex flex-col gap-4">
+                {NAV_LINKS.map((link, i) => (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-white/70 hover:text-[#C9ADA7]"
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.04, duration: 0.2 }}
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+                <motion.a
+                  href="#contact"
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-white/70 hover:text-[#C9ADA7]"
+                  className="mt-2 rounded-full bg-[#C9ADA7] px-5 py-3 text-center text-sm font-semibold text-[#22223B] hover:bg-[#F2E9E4]"
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: NAV_LINKS.length * 0.04, duration: 0.2 }}
                 >
-                  {link.label}
-                </a>
-              ))}
-              <a
-                href="#contact"
-                onClick={() => setIsMenuOpen(false)}
-                className="mt-2 rounded-full bg-[#C9ADA7] px-5 py-3 text-center text-sm font-semibold text-[#22223B] hover:bg-[#F2E9E4]"
-              >
-                Contact Me
-              </a>
-            </div>
-          </div>
-        )}
+                  Contact Me
+                </motion.a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* ── Hero ── */}
@@ -309,58 +310,61 @@ export default function Home() {
               <div className="mt-6" aria-label="Rithika Mandiv">
                 <ParticleText
                   text="Rithika"
-                  color="#ffffff"
-                  highlightColor="#ffffff"
+                  color="#F2E9E4"
+                  highlightColor="#F2E9E4"
                   trigger="mount"
-                  fontSize="clamp(2.8rem, 8vw, 5.5rem)"
+                  fontSize="clamp(3.2rem, 12vw, 5.5rem)"
                   fontWeight={700}
                   fontFamily="inherit"
+                  textAlign="left"
                   density={3}
                   particleSize={2}
                   scatter={160}
                   gatherDuration={1400}
                   stagger={380}
                   idleDrift={0}
-                  pointerRepel={0}
-                  repelRadius={0}
+                  pointerRepel={42}
+                  repelRadius={120}
                   glow={false}
-                  className="min-h-[3.5rem] md:min-h-[4.5rem]"
+                  className="h-[80px] md:h-[110px] lg:h-[140px]"
                 />
                 <ParticleText
                   text="Mandiv"
-                  color="#ffffff"
-                  highlightColor="#ffffff"
+                  color="#C9ADA7"
+                  highlightColor="#C9ADA7"
                   trigger="mount"
-                  fontSize="clamp(2.8rem, 8vw, 5.5rem)"
+                  fontSize="clamp(3.2rem, 12vw, 5.5rem)"
                   fontWeight={700}
                   fontFamily="inherit"
+                  textAlign="left"
                   density={3}
                   particleSize={2}
                   scatter={160}
                   gatherDuration={1400}
                   stagger={380}
                   idleDrift={0}
-                  pointerRepel={0}
-                  repelRadius={0}
+                  pointerRepel={42}
+                  repelRadius={120}
                   glow={false}
-                  className="min-h-[3.5rem] md:min-h-[4.5rem]"
+                  className="h-[80px] md:h-[110px] lg:h-[140px]"
                 />
               </div>
 
               {/* Shuffle subtitle — plays once on scroll-enter, no hover replay, no loop */}
-              <div className="mt-4">
+              <div className="mt-8">
                 <Shuffle
                   text="Software Engineering Undergraduate"
                   tag="p"
                   className="text-xl font-semibold md:text-2xl"
                   style={{ color: "#ffffff", textAlign: "left", fontFamily: "inherit" }}
                   shuffleDirection="up"
-                  duration={0.4}
-                  stagger={0.03}
+                  duration={0.7}
+                  stagger={0.04}
+                  shuffleTimes={2}
                   animationMode="evenodd"
                   loop={false}
                   triggerOnce={true}
-                  triggerOnHover={false}
+                  triggerOnHover={true}
                   threshold={0.1}
                   rootMargin="0px"
                 />
