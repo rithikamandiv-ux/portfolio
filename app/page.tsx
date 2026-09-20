@@ -43,16 +43,29 @@ const NAV_LINKS = [
 ] as const;
 
 const SKILLS = [
-  { title: "Frontend", items: ["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS", "Vite", "TanStack Query"] },
-  { title: "Backend & Frameworks", items: ["Node.js", "Express", "PHP", ".NET", "ASP.NET Core", "Spring Boot", "Entity Framework Core", "Hibernate"] },
+  { title: "Frontend", items: ["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS", "Vite", "TanStack Query", "React Router", "GSAP", "shadcn/ui"] },
+  { title: "Backend & Frameworks", items: ["Node.js", "Express", "PHP", ".NET", "ASP.NET Core", "Spring Boot", "Entity Framework Core", "Hibernate", "Prisma", "BullMQ"] },
   { title: "Programming Languages", items: ["Java", "Python", "TypeScript", "C#"] },
-  { title: "Databases", items: ["PostgreSQL", "MySQL", "SQLite"] },
-  { title: "Tools", items: ["Git", "GitHub", "VS Code", "IntelliJ IDEA", "Figma", "Maven", "Vercel", "Docker", "GitHub Actions"] },
+  { title: "Databases", items: ["PostgreSQL", "MySQL", "SQLite", "Redis"] },
+  { title: "Tools", items: ["Git", "GitHub", "VS Code", "IntelliJ IDEA", "Figma", "Maven", "Vercel", "Docker", "GitHub Actions", "ESLint", "Semgrep", "Railway", "Rider"] },
   { title: "Testing", items: ["JUnit", "Mockito", "xUnit", "Testcontainers"] },
   { title: "Data & Machine Learning", items: ["Pandas", "NumPy", "Scikit-learn", "FastF1"] },
 ] as const;
 
 const PROJECTS = [
+  {
+    title: "CodeGuardian AI",
+    year: "2026",
+    desc: "A GitHub-integrated static code analysis platform that connects repositories, runs ESLint and Semgrep through an asynchronous BullMQ pipeline, and provides AI-assisted explanations for individual findings.",
+    points: [
+      "Built a modular monolith with a separate BullMQ analysis worker so long-running repository scans never block HTTP requests.",
+      "Integrated GitHub OAuth with AES-256-GCM encrypted token storage and Redis-backed server-side sessions.",
+      "Normalized ESLint and Semgrep output into a common finding representation, stored in PostgreSQL via Prisma.",
+      "Deliberately separated deterministic finding detection from AI explanation, using an AI provider only to explain findings that already exist.",
+    ],
+    tags: ["React", "TypeScript", "Express", "PostgreSQL", "Redis", "BullMQ", "Semgrep"],
+    github: "https://github.com/rithikamandiv-ux/codeguardian-ai",
+  },
   {
     title: "Cyber Log Analyzer",
     year: "2026",
@@ -435,7 +448,8 @@ export default function Home() {
                 <img
                   src="/profile.jpg"
                   alt="Rithika Mandiv"
-                  className="h-full w-full object-cover object-[25%_30%]"
+                  className="h-full w-full object-cover"
+                  style={{ objectPosition: '50% 32%' }}
                 />
               </div>
             </div>
