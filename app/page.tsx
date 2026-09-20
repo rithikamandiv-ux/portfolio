@@ -43,11 +43,12 @@ const NAV_LINKS = [
 ] as const;
 
 const SKILLS = [
-  { title: "Frontend", items: ["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS"] },
-  { title: "Backend & Frameworks", items: ["Node.js", "Express", "PHP"] },
-  { title: "Programming Languages", items: ["Java", "Python", "TypeScript"] },
+  { title: "Frontend", items: ["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS", "Vite", "TanStack Query"] },
+  { title: "Backend & Frameworks", items: ["Node.js", "Express", "PHP", ".NET", "ASP.NET Core", "Spring Boot", "Entity Framework Core", "Hibernate"] },
+  { title: "Programming Languages", items: ["Java", "Python", "TypeScript", "C#"] },
   { title: "Databases", items: ["PostgreSQL", "MySQL", "SQLite"] },
-  { title: "Tools", items: ["Git", "GitHub", "VS Code", "IntelliJ IDEA", "Figma", "Maven", "Vercel"] },
+  { title: "Tools", items: ["Git", "GitHub", "VS Code", "IntelliJ IDEA", "Figma", "Maven", "Vercel", "Docker", "GitHub Actions"] },
+  { title: "Testing", items: ["JUnit", "Mockito", "xUnit", "Testcontainers"] },
   { title: "Data & Machine Learning", items: ["Pandas", "NumPy", "Scikit-learn", "FastF1"] },
 ] as const;
 
@@ -92,17 +93,30 @@ const PROJECTS = [
     github: "https://github.com/rithikamandiv-ux/F1-winner-prediction",
   },
   {
-    title: "Clinic Insurance System",
+    title: "CareNexus",
     year: "2026",
-    desc: "A desktop application for managing clinic operations — patients, doctors, appointments, medical records, insurance policies, and claims — built with Java and JavaFX.",
+    desc: "A healthcare operations and insurance management system with a client-server architecture — a JavaFX desktop frontend, a Spring Boot REST API, and a PostgreSQL database — managing patients, doctors, appointments, medical records, insurance policies, and claims.",
     points: [
-      "Designed a layered architecture (model → service → UI → util) following OOP best practices.",
-      "Implemented comprehensive input validation for numeric fields, dates, and entity relationships.",
-      "Built file-based data persistence for all entities using serialisation.",
-      "Managed complex entity relationships across six interconnected modules.",
+      "Built a layered Spring Boot backend (controller → service → repository) exposing a REST API consumed by the JavaFX frontend.",
+      "Modeled six relational domains in PostgreSQL with Flyway-managed schema migrations and enforced referential integrity.",
+      "Implemented full appointment and insurance-claim lifecycles with strict validation and structured API error handling.",
+      "Covered the backend with 83 automated tests using JUnit 5, Mockito, and MockMvc, run automatically via GitHub Actions CI.",
     ],
-    tags: ["Java", "JavaFX", "Maven", "OOP", "File I/O"],
-    github: "https://github.com/rithikamandiv-ux/Clinic-insurance-system",
+    tags: ["Java", "JavaFX", "Spring Boot", "PostgreSQL", "REST API"],
+    github: "https://github.com/rithikamandiv-ux/CareNexus",
+  },
+  {
+    title: "JobEngine",
+    year: "2026",
+    desc: "A distributed background job processing engine with a database-backed queue, built with a .NET worker service, an ASP.NET Core minimal API, and a React dashboard.",
+    points: [
+      "Implemented atomic job claiming across concurrent workers using PostgreSQL's FOR UPDATE SKIP LOCKED, verified by an integration test.",
+      "Built exponential backoff with full jitter, dead-lettering, and stale claim recovery for workers that crash mid-job.",
+      "Designed a generic handler-registration system so new job types require no changes to the engine itself.",
+      "Covered the system with 73 automated tests, including integration tests run against real PostgreSQL via Testcontainers.",
+    ],
+    tags: ["C#", ".NET", "PostgreSQL", "React", "TypeScript"],
+    github: "https://github.com/rithikamandiv-ux/JobEngine",
   },
   {
     title: "Expense Recorder",
@@ -164,6 +178,12 @@ const ACHIEVEMENTS = [
     place: "Informatics Institute of Technology (IIT)",
     status: "Completed",
     desc: "Gained a strong foundation in Python including logic building, functions, and problem-solving.",
+  },
+  {
+    title: "Machine Learning — Professional Certificate",
+    place: "Informatics Institute of Technology (IIT)",
+    status: "Completed",
+    desc: "Gained a strong foundation in machine learning including regression, classification, clustering, neural networks, and MLOps fundamentals.",
   },
 ] as const;
 
