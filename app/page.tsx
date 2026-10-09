@@ -43,12 +43,12 @@ const NAV_LINKS = [
 ] as const;
 
 const SKILLS = [
-  { title: "Frontend", items: ["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS", "Vite", "TanStack Query", "React Router", "GSAP", "shadcn/ui"] },
-  { title: "Backend & Frameworks", items: ["Node.js", "Express", "PHP", ".NET", "ASP.NET Core", "Spring Boot", "Entity Framework Core", "Hibernate", "Prisma", "BullMQ"] },
-  { title: "Programming Languages", items: ["Java", "Python", "TypeScript", "C#"] },
+  { title: "Frontend", items: ["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS", "Vite", "TanStack Query", "React Router", "GSAP", "shadcn/ui", "Leaflet"] },
+  { title: "Backend & Frameworks", items: ["Node.js", "Express", "PHP", ".NET", "ASP.NET Core", "Spring Boot", "Entity Framework Core", "Hibernate", "Prisma", "BullMQ", "FastAPI"] },
+  { title: "Programming Languages", items: ["Java", "Python", "TypeScript", "C#", "Go"] },
   { title: "Databases", items: ["PostgreSQL", "MySQL", "SQLite", "Redis"] },
-  { title: "Tools", items: ["Git", "GitHub", "VS Code", "IntelliJ IDEA", "Figma", "Maven", "Vercel", "Docker", "GitHub Actions", "ESLint", "Semgrep", "Railway", "Rider"] },
-  { title: "Testing", items: ["JUnit", "Mockito", "xUnit", "Testcontainers"] },
+  { title: "Tools", items: ["Git", "GitHub", "VS Code", "IntelliJ IDEA", "Figma", "Maven", "Vercel", "Docker", "GitHub Actions", "ESLint", "Semgrep", "Railway", "Rider", "Ruff", "golangci-lint", "SonarQube Cloud"] },
+  { title: "Testing", items: ["JUnit", "Mockito", "xUnit", "Testcontainers", "pytest", "Vitest"] },
   { title: "Data & Machine Learning", items: ["Pandas", "NumPy", "Scikit-learn", "FastF1"] },
 ] as const;
 
@@ -130,6 +130,32 @@ const PROJECTS = [
     ],
     tags: ["C#", ".NET", "PostgreSQL", "React", "TypeScript"],
     github: "https://github.com/rithikamandiv-ux/JobEngine",
+  },
+  {
+    title: "Aircraft Tracker",
+    year: "2026",
+    desc: "A real-time aircraft tracking app for South Asian airspace: a Python and FastAPI backend polls the OpenSky Network and pushes live positions over WebSockets to a React and TypeScript map.",
+    points: [
+      "Built an on-demand poller that only queries OpenSky while viewers are connected, with a 60-second grace period, keeping usage within a 4,000-credit daily API budget.",
+      "Broadcast a single upstream fetch to every connected client over WebSockets, with Origin validation on the socket endpoint and automatic reconnection with exponential back-off in the UI.",
+      "Handled upstream failures deliberately: OAuth2 token caching with one bounded retry on 401, rate-limit pauses on 429, and stale-snapshot resends so the interface shows a delayed state instead of a blank map.",
+      "Tested without touching the network using an httpx mock transport and an application factory, with Ruff, ESLint, pytest, Vitest and SonarQube Cloud enforced in GitHub Actions CI.",
+    ],
+    tags: ["Python", "FastAPI", "React", "TypeScript", "WebSockets"],
+    github: "https://github.com/rithikamandiv-ux/aircraft-tracker",
+  },
+  {
+    title: "stackrun",
+    year: "2026",
+    desc: "A command-line tool written in Go that runs every service a project needs from one config file, merges their output into one stream, and shuts them all down cleanly.",
+    points: [
+      "Implemented graceful shutdown that sends SIGTERM to each service's process group, waits for a configurable timeout, then escalates to SIGKILL so no child processes are left running.",
+      "Built automatic restarts with exponential backoff from 1 second up to 30 seconds, a five-attempt limit, and a healthy-run reset so a crashing service cannot loop forever.",
+      "Added strict YAML config validation that rejects unknown fields and reports every mistake at once, with aligned, colour-coded log prefixes per service.",
+      "Shipped as a single binary with prebuilt macOS and Linux releases, tested with Go's race detector, and linted with golangci-lint in CI on Linux and macOS.",
+    ],
+    tags: ["Go", "CLI", "Concurrency", "Process Management", "GitHub Actions"],
+    github: "https://github.com/rithikamandiv-ux/stackrun",
   },
   {
     title: "Expense Recorder",
