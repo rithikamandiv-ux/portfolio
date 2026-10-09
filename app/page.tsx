@@ -4,8 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import type { ReactNode } from "react";
 import { useState, useEffect } from "react";
 import Shuffle from '@/components/ui/Shuffle'
-import ParticleText from "@/components/ui/ParticleText";
 import MonogramLogo from "@/components/ui/MonogramLogo";
+import HeroName from "@/components/ui/HeroName";
 
 /* ── Animation variant ── */
 
@@ -173,10 +173,10 @@ const PROJECTS = [
   {
     title: "Portfolio Website",
     year: "2026",
-    desc: "This portfolio — a modern, animated single-page application featuring a particle-text name reveal, shuffle subtitle animation, responsive navigation, and project showcase.",
+    desc: "This portfolio — a modern, animated single-page application featuring an interactive canvas name reveal, shuffle subtitle animation, responsive navigation, and project showcase.",
     points: [
       "Built with Next.js and TypeScript for a performant, type-safe application structure.",
-      "Implemented an animated hero with particle-text name reveal and shuffle subtitle.",
+      "Implemented an animated hero with interactive canvas name reveal and shuffle subtitle.",
       "Used Framer Motion for scroll-triggered reveal animations across sections.",
       "Deployed to Vercel with responsive layouts optimised for desktop, tablet, and mobile.",
     ],
@@ -366,49 +366,8 @@ export default function Home() {
                 ● Available for Opportunities
               </span>
 
-              {/* ParticleText name — two lines, gather once on mount, white-only */}
-              <div className="mt-6" aria-label="Rithika Mandiv">
-                <ParticleText
-                  text="Rithika"
-                  color="#F2E9E4"
-                  highlightColor="#F2E9E4"
-                  trigger="mount"
-                  fontSize="clamp(3.2rem, 12vw, 5.5rem)"
-                  fontWeight={700}
-                  fontFamily="inherit"
-                  textAlign="left"
-                  density={3}
-                  particleSize={2}
-                  scatter={160}
-                  gatherDuration={1400}
-                  stagger={380}
-                  idleDrift={0}
-                  pointerRepel={42}
-                  repelRadius={120}
-                  glow={false}
-                  className="h-[80px] md:h-[110px] lg:h-[140px]"
-                />
-                <ParticleText
-                  text="Mandiv"
-                  color="#C9ADA7"
-                  highlightColor="#C9ADA7"
-                  trigger="mount"
-                  fontSize="clamp(3.2rem, 12vw, 5.5rem)"
-                  fontWeight={700}
-                  fontFamily="inherit"
-                  textAlign="left"
-                  density={3}
-                  particleSize={2}
-                  scatter={160}
-                  gatherDuration={1400}
-                  stagger={380}
-                  idleDrift={0}
-                  pointerRepel={42}
-                  repelRadius={120}
-                  glow={false}
-                  className="h-[80px] md:h-[110px] lg:h-[140px]"
-                />
-              </div>
+              {/* Hero name — two lines, interactive canvas text */}
+              <HeroName />
 
               {/* Shuffle subtitle — plays once on scroll-enter, no hover replay, no loop */}
               <div className="mt-8">

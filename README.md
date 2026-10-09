@@ -105,10 +105,11 @@ portfolio/
 │   └── page.tsx
 ├── components/
 │   └── ui/
-│       ├── ParticleText.tsx
+│       ├── HeroName.tsx
 │       ├── Shuffle.tsx
-│       ├── StrokeText.tsx
 │       ├── SplashScreen.tsx
+│       ├── StrokeText.tsx
+│       ├── TechText.tsx
 │       └── useSplashVisibility.ts
 ├── public/
 │   └── profile.jpg
