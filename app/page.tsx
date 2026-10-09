@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { useState, useEffect } from "react";
 import Shuffle from '@/components/ui/Shuffle'
 import ParticleText from "@/components/ui/ParticleText";
+import MonogramLogo from "@/components/ui/MonogramLogo";
 
 /* ── Animation variant ── */
 
@@ -271,9 +272,9 @@ export default function Home() {
       <nav className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-[#0b0b12]/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3">
+          <a href="#" className="flex items-center gap-3" aria-label="Rithika Mandiv, home">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#C9ADA7] font-bold text-[#22223B]">
-              &lt;/&gt;
+              <MonogramLogo className="h-[26px] w-[26px]" />
             </div>
             <span className="text-xl font-bold">Rithika</span>
           </a>
