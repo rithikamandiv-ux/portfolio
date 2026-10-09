@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import Shuffle from '@/components/ui/Shuffle'
 import MonogramLogo from "@/components/ui/MonogramLogo";
 import HeroName from "@/components/ui/HeroName";
+import HeroAvatar from "@/components/ui/HeroAvatar";
 
 /* ── Animation variant ── */
 
@@ -431,12 +432,7 @@ export default function Home() {
             <div className="flex justify-center">
               <div className="absolute h-[26rem] w-[26rem] rounded-full bg-[#C9ADA7]/10 blur-3xl" />
               <div className="relative h-80 w-80 overflow-hidden rounded-full border-4 border-[#C9ADA7]/40 bg-black/40 shadow-[0_0_60px_rgba(201,173,167,0.25)] md:h-[24rem] md:w-[24rem]">
-                <img
-                  src="/profile.jpg"
-                  alt="Rithika Mandiv"
-                  className="h-full w-full object-cover"
-                  style={{ objectPosition: '50% 32%' }}
-                />
+                <HeroAvatar />
               </div>
             </div>
           </div>
