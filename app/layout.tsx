@@ -14,9 +14,9 @@ const dancingScript = Dancing_Script({
 });
 
 export const metadata: Metadata = {
-  title: "Rithika Mandiv — Software Engineer",
+  title: "Rithika Mandiv | Software Engineer",
   description:
-    "Portfolio of Rithika Mandiv — Software Engineering undergraduate building web, desktop, and data-driven applications.",
+    "Portfolio of Rithika Mandiv, a Software Engineering undergraduate building web, desktop and data-driven applications.",
 };
 
 export default function RootLayout({

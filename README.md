@@ -1,4 +1,4 @@
-# Rithika Mandiv — Portfolio
+# Rithika Mandiv | Portfolio
 
 A personal developer portfolio built with Next.js, TypeScript, and Tailwind CSS, showcasing my
 work across full-stack web development, Java desktop applications, Python and machine learning
@@ -8,7 +8,7 @@ systems, and cybersecurity.
 
 ## Live Website
 
-https://rithikamandiv.vercel.app
+https://rithikamandiv.me
 
 ---
 
@@ -16,7 +16,7 @@ https://rithikamandiv.vercel.app
 
 This is my personal developer portfolio, built to present my projects, technical skills, and
 background through a clean, responsive, and interactive interface. Individual projects shown on
-the site have their own repositories, linked from the site itself, this repository is for the
+the site have their own repositories, linked from the site itself, and this repository is for the
 portfolio site only.
 
 ---
@@ -28,7 +28,7 @@ portfolio site only.
 - Styling: Tailwind CSS
 - Animations: Framer Motion, GSAP
 - Interactive text and visual effects: React Bits components
-- Deployment: Vercel
+- Deployment: Vercel (custom domain via Namecheap)
 - Version control: Git and GitHub
 
 ---
@@ -105,7 +105,10 @@ portfolio/
 │   └── page.tsx
 ├── components/
 │   └── ui/
+│       ├── DitherVeil.tsx
+│       ├── HeroAvatar.tsx
 │       ├── HeroName.tsx
+│       ├── MonogramLogo.tsx
 │       ├── Shuffle.tsx
 │       ├── SplashScreen.tsx
 │       ├── StrokeText.tsx
@@ -122,8 +125,9 @@ portfolio/
 
 ## Deployment
 
-Deployed on Vercel. The GitHub repository is connected to Vercel, so changes pushed to the `main`
-branch trigger automatic production deployments.
+Deployed on Vercel at https://rithikamandiv.me, a custom domain registered with Namecheap.
+The GitHub repository is connected to Vercel, so changes pushed to the `main` branch trigger
+automatic production deployments.
 
 ---
 

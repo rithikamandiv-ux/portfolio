@@ -110,7 +110,7 @@ const PROJECTS = [
   {
     title: "CareNexus",
     year: "2026",
-    desc: "A healthcare operations and insurance management system with a client-server architecture — a JavaFX desktop frontend, a Spring Boot REST API, and a PostgreSQL database — managing patients, doctors, appointments, medical records, insurance policies, and claims.",
+    desc: "A healthcare operations and insurance management system that manages patients, doctors, appointments, medical records, insurance policies and claims. It uses a client-server architecture with a JavaFX desktop frontend, a Spring Boot REST API and a PostgreSQL database.",
     points: [
       "Built a layered Spring Boot backend (controller → service → repository) exposing a REST API consumed by the JavaFX frontend.",
       "Modeled six relational domains in PostgreSQL with Flyway-managed schema migrations and enforced referential integrity.",
@@ -174,7 +174,7 @@ const PROJECTS = [
   {
     title: "Portfolio Website",
     year: "2026",
-    desc: "This portfolio — a modern, animated single-page application featuring an interactive canvas name reveal, shuffle subtitle animation, responsive navigation, and project showcase.",
+    desc: "This portfolio is a modern, animated single-page application with an interactive canvas name reveal, a shuffle subtitle animation, responsive navigation and a project showcase.",
     points: [
       "Built with Next.js and TypeScript for a performant, type-safe application structure.",
       "Implemented an animated hero with interactive canvas name reveal and shuffle subtitle.",
@@ -209,19 +209,19 @@ const EDUCATION = [
 
 const ACHIEVEMENTS = [
   {
-    title: "Web Development — Professional Certificate",
+    title: "Professional Certificate in Web Development",
     place: "Informatics Institute of Technology (IIT)",
     status: "Distinction",
     desc: "Achieved Distinction while learning core web development concepts including HTML, CSS, and JavaScript.",
   },
   {
-    title: "Python Programming — Professional Certificate",
+    title: "Professional Certificate in Python Programming",
     place: "Informatics Institute of Technology (IIT)",
     status: "Completed",
     desc: "Gained a strong foundation in Python including logic building, functions, and problem-solving.",
   },
   {
-    title: "Machine Learning — Professional Certificate",
+    title: "Professional Certificate in Machine Learning",
     place: "Informatics Institute of Technology (IIT)",
     status: "Completed",
     desc: "Gained a strong foundation in machine learning including regression, classification, clustering, neural networks, and MLOps fundamentals.",
@@ -367,10 +367,10 @@ export default function Home() {
                 ● Available for Opportunities
               </span>
 
-              {/* Hero name — two lines, interactive canvas text */}
+              {/* Hero name: two lines of interactive canvas text */}
               <HeroName />
 
-              {/* Shuffle subtitle — plays once on scroll-enter, no hover replay, no loop */}
+              {/* Shuffle subtitle: plays once on scroll-enter, with no hover replay and no loop */}
               <div className="mt-8">
                 <Shuffle
                   text="Software Engineering Undergraduate"
@@ -456,7 +456,7 @@ export default function Home() {
               {/* Text */}
               <div className="space-y-6 text-lg leading-8 text-[#F2E9E4]/80">
                 <p>
-                  Hi, I&apos;m Rithika Mandiv — a Software Engineering
+                  Hi, I&apos;m Rithika Mandiv, a Software Engineering
                   undergraduate who enjoys solving problems through software,
                   from full-stack web apps and Java desktop systems to Python
                   data projects.
